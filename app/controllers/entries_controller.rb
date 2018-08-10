@@ -26,5 +26,9 @@ class EntriesController < ApplicationController
     #ask an instructor about this part
   end
 
+  def destroy
+    redirect_to entries_url(params[:id])
+  end
+
 
 end
