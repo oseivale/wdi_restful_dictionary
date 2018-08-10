@@ -4,5 +4,7 @@ resources :entries
 
 get '/show/:id' => 'entries#show'
 
+get '/new' => 'entries#new'
+
 
 end
