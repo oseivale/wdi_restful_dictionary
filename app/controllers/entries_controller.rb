@@ -2,28 +2,44 @@ class EntriesController < ApplicationController
 
   def index
     # here we'll define some @instance_variables to store data from the database for the views to use
-    render :index
+    @entries = Entry.all
+
   end
 
   def show
-    render :show
+    @entry = Entry.find(params[:id])
   end
 
   def new
-    render :new
+    @entry = Entry.new
   end
 
   def create
-    redirect_to entries_url
+    @entry = Entry.new
+    @entry.word = params[:entry][:word]
+    @entry.language = params[:entry][:language]
+    @entry.definition = params[:entry][:definition]
+
+    if @entry.save
+      redirect_to entries_url
+    end
   end
 
   def edit
-    render :edit
+    @entry = Entry.find(params[:id])
+    # render :edit
   end
 
   def update
-    redirect_to entries_url(params[:id])
-    #ask an instructor about this part
+    @entry = Entry.find(params[:id])
+    @entry.word = params[:entry][:word]
+    @entry.language = params[:entry][:language]
+    @entry.definition = params[:entry][:definition]
+
+    if @entry.save
+      redirect_to entries_url(params[:id])
+      #ask an instructor about this part
+    end
   end
 
   def destroy
