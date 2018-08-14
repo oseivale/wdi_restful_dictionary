@@ -1,6 +1,9 @@
 <p>This is the show page <%= params[:id] %></p>
 
-<%= link_to 'Edit Entry', edit_entry_path %>
+<p><%= link_to 'Edit Entry', edit_entry_path %>
+<%= link_to 'Delete Entry', entry_path(@entry), method: :delete, data: {confirm: "Are you sure you want to delete the word? '#{@entry.word}'? This cannot be undone!"} %> </p>
+
+
 
 <h1><%= @entry.word %> - <%= @entry.language %></h1>
 <%= link_to 'Back to Entries', entries_url %>
